@@ -201,7 +201,7 @@ class UniformPair(Sampler):
             idx = random.randint(0,self.data.nnz-1)
             u = self.users[self.idx]
             i = self.items[self.idx]
-            j = self.sample_negative_item(self.data[u])
+            j = self.sample_negative_item(self.data[u].todense())
             yield u,i,j
 
 class UniformPairWithoutReplacement(Sampler):
@@ -217,7 +217,7 @@ class UniformPairWithoutReplacement(Sampler):
         for _ in xrange(self.num_samples(self.data.nnz)):
             u = self.users[self.idx]
             i = self.items[self.idx]
-            j = self.sample_negative_item(self.data[u])
+            j = self.sample_negative_item(self.data[u].todense())
             self.idx += 1
             yield u,i,j
 
